@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto App</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/27b89f5f87.js" crossorigin="anonymous"></script>
+    <style>
+        :root{
+            --bg: #2e2c2ce0;
+            --bg-trans: #2e2c2c69;
+            --bg-darker: #464444f8;
+        }
+        .app{
+            background-image: linear-gradient(120deg, rgba(100, 0, 0, 0.4), rgb(0,0,12,1.3)), url(./images/galaxy.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: grid;
+            grid-template-columns: 75% 25%;
+            grid-template-rows: 10% 60% 30%;
+            padding: 0.3em 0.5em 0.9em 0.3em;
+            overflow: hidden;
+            grid-gap: 0.3em;
+        }
+        .titles{
+            font-weight: 700;
+            place-self: start center;
+            padding: 8px;
+            display: flex;
+            gap: 0.2em;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+        .titles::before{
+            position: absolute;
+            content: "";
+            width: 100%;
+            bottom: -2%;
+            border-bottom: 4px solid greenyellow;
+            border-radius: 30px;
+        }
+        .header{
+            background-color: var(--bg);
+            grid-area: 1/1/2/3;
+            border-radius: 7px;
+            padding: 0.4em 0.7em;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-auto-flow: column;
+            place-items: center start;
+        }
+        .headerspan{
+            font-size: 1.8em;
+            font-weight: 800;
+            font-family: "Permanent Marker", cursive;
+        }
+        .userdiv{
+            place-self:  center end;
+            display: grid;
+            grid-auto-flow: column;
+            align-items: center;
+            grid-gap: 0.5em;
+        }
+        .useredit{
+            background-color: var(--bg-darker);
+            padding: 0.6em 0.8em;
+            border-radius: 7px;
+            display: flex;
+            justify-content: center;
+            gap: 0.3em;
+        }
+        .useredit input{
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            font-weight: 600;
+            outline: none;
+        }
+        .useredit input:active,
+        .useredit input:hover{
+            border: none !important;
+            outline: none !important;
+        }
+        .userdiv img{
+            width: 60px;
+            height: 50px;
+            border-radius: 50%;
+            place-self: end ! important;
+        }
+        .searchbtn{
+            color: #fff;
+            background-color: transparent;
+            border-radius: 20px;
+            border: 1px solid grey;
+            display: flex;
+            gap: 0.5em;
+            font-size: 1em;
+            justify-content:  center;
+            align-items: center;
+            text-align: center;
+            padding: 0.5em 0.9em;
+            font-weight: 300;
+            place-self: center;
+            transition: all 0.5s ease-in-out;
+        }
+        .searchbtn:hover span,
+        .searchbtn:hover{
+            /* color: black; */
+            background-color: rgb(223, 146, 31);
+            border:  none;
+        }
+        .searchbtn span{
+            font-weight: 300;
+            font-size: 0.9em;
+        }
+        .menu{
+            /* background-color: rgba(255, 230, 0, 0.37); */
+            grid-area: 2/1/4/2;
+            overflow: auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 9em 17em auto;
+            grid-auto-flow: row;
+        }
+        .crypto-sample{
+            width: 100%;
+            /* background-color: rgba(0, 255, 42, 0.253); */
+            display: grid;
+            grid-auto-columns: 250px;
+            grid-template-rows: 1fr;
+            grid-auto-flow: column;
+            grid-gap: 0.5em;
+            overflow: auto;
+            place-items: center;
+            padding: 0.9em 1em;
+        }
+        .cryptodiv{
+            width: 100%;
+            height: 100%;
+            padding: 0.9em 1em;
+            border-radius: 12px;
+            background: url(https://www.coingecko.com/coins/1/sparkline.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border: 1px solid grey;
+            border-radius: 7px;
+            backdrop-filter: blur(20px);
+        }
+.imggraph {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     background-color: #373737;
+    border-radius: 50%; 
+}
+
+.sparkline-img {
+    width: 100%; 
+    height: 100%; 
+    transform-origin: center; 
+    transform: scale(2.5); 
+}
+
+
+        .crypto-card{
+            /* background-color: blue; */
+        }
+        .transaction{
+            /* background-color: red; */
+        }
+        .chats{
+            background-color: var(--bg-trans);
+            grid-area: 2/2/3/2;
+            border: 1px solid grey;
+            border-radius: 7px;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr auto;
+        }
+        .chats-div{
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-auto-flow: row;
+            grid-auto-rows: auto;
+            grid-gap: 0.5em;
+            padding: 0.5em;
+        }
+        .inchat{
+            border-radius: 7px;
+            background-color: var(--bg-darker);
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr auto;
+            align-self: start;
+            padding: 0.5em;
+        }
+        .inchat span{
+            color: greenyellow;
+        }
+        .userchat{
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid grey;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            padding: 0em 0em 0.4em 0.7em;
+            gap: 0.5em;
+        }
+        .chattime {
+            font-size: 0.7em;
+            place-self: end;
+            font-style: italic;
+        }
+        .userchat img{
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+        .userchat span{
+            font-weight: 500;
+        }
+        .msgchat{
+            width: 100%;
+            font-size: 0.9em;
+            font-weight: 300;
+            padding: 0.4em;
+        }
+        .send-div{
+            width: 100%;
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-columns: auto 1fr auto;
+            place-items: center;
+            padding: 0.6em 0.9em ; 
+            grid-gap: 0.5em;
+        }
+        .send-div input{
+            width: 100%;
+            padding: 0.7em 0.9em;
+            border-radius: 25px; 
+            font-size: 14px;
+            border: 2px solid greenyellow;
+            background-color: transparent;
+            outline: none;
+        }
+        .send-div input:active,
+        .send-div input:hover{
+            border: 2px solid greenyellow;
+        }
+        .send-div i{
+            color: greenyellow;
+        }
+        .send-div img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .purchase{
+            /* background-color: rgba(89, 9, 155, 0.404); */
+            grid-area: 3/2/4/3;
+            border: 1px solid grey;
+            border-radius: 7px;
+            display: grid;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div class="header">
+            <span class="headerspan">Crypto-Dashboard</span>
+            <button class="searchbtn"> <i class="fa-solid fa-shake fa-magnifying-glass"></i> Search</button>
+            <div class="userdiv">
+                <img src="./users/anonymus.jpg" alt="">
+                <div class="useredit"><input type="text" value="Anonymous" id="Anonymous">
+                    <i class="fa-solid fa-pen-to-square"></i></div>
+            </div>
+        </div>
+        <div class="menu">
+           <div class="crypto-sample">
+          <div class="cryptodiv">
+            btc
+          </div>
+           </div>
+           <div class="crypto-card">
+            crypto-div
+            <div class="imggraph">
+                <img class="sparkline-img" src="https://www.coingecko.com/coins/4128/sparkline.svg" alt="Sparkline">
+
+            </div>
+           </div>
+           <div class="transaction">
+            transaction
+            
+           </div>
+        </div>
+        <div class="chats">
+         <span class="titles">Recent <i>Bitcoin</i> Comments.</span>
+         <div class="chats-div">
+            <div class="inchat">
+            <div class="userchat">
+                <img src="./users/anonymus.jpg" alt="">
+                <span>@Anonymous</span>
+            </div>
+            <div class="msgchat"> Hello the crypto is okay
+                Hello the crypto is okay<br> Hello the crypto is okay
+                Hello the crypto is okay<br>
+            </div>
+            <span class="chattime">24 April 11:24 AM</span>
+            </div>
+            <div class="inchat">
+            <div class="userchat">
+                <img src="./users/anonymus.jpg" alt="">
+                <span>@Anonymous</span>
+            </div>
+            <div class="msgchat"> Hello the crypto is okay
+                Hello the crypto is okay<br> Hello the crypto is okay
+                Hello the crypto is okay<br>
+            </div>
+            <span class="chattime">24 April 11:24 AM</span>
+            </div>
+            <div class="inchat">
+            <div class="userchat">
+                <img src="./users/anonymus.jpg" alt="">
+                <span>@Anonymous</span>
+            </div>
+            <div class="msgchat"> Hello the crypto is okay
+                Hello the crypto is okay<br> Hello the crypto is okay
+                Hello the crypto is okay<br>
+            </div>
+            <span class="chattime">24 April 11:24 AM</span>
+            </div>
+            <div class="inchat">
+            <div class="userchat">
+                <img src="./users/anonymus.jpg" alt="">
+                <span>@Anonymous</span>
+            </div>
+            <div class="msgchat"> Hello the crypto is okay
+                Hello the crypto is okay<br> Hello the crypto is okay
+                Hello the crypto is okay<br>
+            </div>
+            <span class="chattime">24 April 11:24 AM</span>
+            </div>
+            <div class="inchat">
+            <div class="userchat">
+                <img src="./users/anonymus.jpg" alt="">
+                <span>@Anonymous</span>
+            </div>
+            <div class="msgchat"> Hello the crypto is okay
+                Hello the crypto is okay<br> Hello the crypto is okay
+                Hello the crypto is okay<br>
+            </div>
+            <span class="chattime">24 April 11:24 AM</span>
+            </div>
+            <div class="inchat">
+            <div class="userchat">
+                <img src="./users/anonymus.jpg" alt="">
+                <span>@Anonymous</span>
+            </div>
+            <div class="msgchat"> Hello the crypto is okay
+                Hello the crypto is okay<br> Hello the crypto is okay
+                Hello the crypto is okay<br>
+            </div>
+            <span class="chattime">24 April 11:24 AM</span>
+            </div>
+         </div>
+         <div class="send-div">
+            <img src="./users/anonymus.jpg" alt="">
+            <input type="text" placeholder="Type Something...">
+            <i class="fa-solid fa-paper-plane"></i>
+         </div>
+        </div>
+        <div class="purchase">
+            <span class="titles"> Operation Buy <i>Bitcoin</i></span>
+        </div>
+    </div>
+    <script src="./src/index.js"></script>
+</body>
+</html>
