@@ -2,8 +2,23 @@ function show(values){
         console.log(values);
 }
 
-let var1 = "Boogie";
+function blurScreen(res = false){
+      let myScreen = document.querySelector(".blurdiv");
+        if(res){
+                myScreen.style.display = "block";
+        }else{
+                myScreen.style.display = "none";
+        }
+}
 
-show(var1.charAt(4))
-show(Math.random()*6)
-show("Test")
+// blurScreen(true);
+
+function closeDiv(id){
+        blurScreen(false)
+        document.getElementById(id).style.display = "none";
+}
+
+function openDiv(id){
+        blurScreen(true)
+        document.getElementById(id).style.display = "grid";
+}
