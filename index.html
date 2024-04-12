@@ -66,8 +66,9 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 610px;
-            height: 380px;
+            /* min-width: 500px; */
+            width: 60%;
+            height: 390px;
             background-color: var(--bg);
             display: none;
             grid-template-columns: repeat(1, 1fr);
@@ -86,6 +87,7 @@
             background-color: var(--bg-darker);
             border: none;
         }
+        .alltransactions,
         .listedcoins{
             border-top: 1px solid grey;
             margin: 0 auto;
@@ -97,6 +99,7 @@
 table {
 width: 100%; 
 border-collapse: collapse;
+border: none;
 padding: 0.3em;
 }
 
@@ -113,20 +116,21 @@ font-size: 0.9em;
 background-color: var(--bg-darker); 
 }
 tbody{
-background-color: var(--color1tr);
 padding-top: 70px;
 overflow: auto;
 }
 th,td{
 white-space: nowrap;
 }
-td{
+tbody td{
     padding: 0.3em;
-    text-align: center; 
-  vertical-align: middle; 
+    text-align: left; 
   font-weight: 400;
   font-size: 1em;
   border-bottom: 1px solid grey;
+}
+tbody tr td:nth-child(1){
+    text-align: center;
 }
 td .tabledivimg img{
     width: 45px;
@@ -144,12 +148,9 @@ padding: 0.3em;
 transition: all 0.5s ease;
 }
 tbody tr:hover{
-background-color: #ebe1e177;
+background-color: #ebe1e131;
 }
-.greenyellow,
-tbody tr td:nth-child(1){
-color: greenyellow;
-}
+
 .tabledivimg{
     text-align: center;
   display: flex;
@@ -405,17 +406,19 @@ color: greenyellow;
 .visatitle .invisatitle img{
     width: 50px;
     height: 50px;
+    border-radius: 50%;
 }
 .visatitle .invisatitle span{
     font-size: 1.2em;
     font-weight: 700;
     justify-self: start;
 }
-.visatitle i {
+.visatitle .wifi {
     font-size: 2em;
     transform: rotate(90deg);
     padding: .4em;
 }
+.coinsymbol,
 .visanumber span i ,
 .visabalance span i,
 .visanumber span,
@@ -501,11 +504,14 @@ color: greenyellow;
 .carddate span i {
     color: greenyellow;
 }
-.danger{
-    color: orangered !important;
-}
+
 .transaction{
-    /* background-color: red; */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-gap: 0.5em;
+}
+.alltransactions{
 }
 .chats{
     background-color: var(--bg-trans);
@@ -604,7 +610,75 @@ color: greenyellow;
     border: 1px solid grey;
     border-radius: 7px;
     display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: auto 1fr auto;
+    justify-items: center;
+    padding-bottom: 0.7em;
 }
+.currencies{
+    display: grid;
+    grid-gap: 0.3em;
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;
+    justify-items: center;
+    padding: 0.3em;
+}
+.incurrencies{
+    width: 90%;
+    background-color:  var(--bg);
+    padding: 0.5em 0.5em;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border-radius: 7px;
+    gap: 0.3em;
+}
+.incurrencies input,
+.incurrencies span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4em;
+    background-color: var(--bg-darker);
+    padding: 0.1em 0.4em;
+    border-radius: 5px;
+    font-weight: 500;
+    white-space: nowrap;
+    font-size: 0.9em;
+}
+.incurrencies input{
+    outline: none;
+    border: none;
+    width: 100%;
+}
+.purchase button{
+    width: 0 auto;
+    padding: 0.4em 0.6em;
+    color: greenyellow;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 0.9em;
+    border: none;
+    background-color: var(--bg-darker);
+    outline: none;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+.purchase button i {
+    color: greenyellow;
+}
+
+.greenyellow,
+tbody tr td:nth-child(1){
+color: greenyellow !important;
+}
+.danger{
+    color: orangered !important;
+}
+
     </style>
 </head>
 <body>
@@ -617,27 +691,15 @@ color: greenyellow;
                 <table>
                     <thead>
                         <tr>
-                            <th>Rank</th>
-                            <th>Coin</th>
-                            <th>Price</th>
-                            <th>24h</th>
-                            <th>24h Price Change</th>
-                            <th>Last 7 Days</th>
+                        <th>Rank</th>
+                        <th>Coin</th>
+                        <th>Coin Price</th>
+                        <th>24h Rate</th>
+                        <th>24h Price Change</th>
+                        <th>7 Days Graph</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody">
-                        <tr>
-                            <td>1</td>
-                            <td><div class="tabledivimg">
-                                <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400" alt=""> Bitcoin <i>BTC</i>
-                            </div></td>
-                            <td>$62, 349</td>
-                            <td class="greenyellow"><i class="greenyellow fa-solid fa-caret-up"></i> 1.23%</td>
-                            <td>$377.35</td>
-                            <td><div class="tablegraph">
-                                <img class="" src="https://www.coingecko.com/coins/4128/sparkline.svg" alt="Sparkline">
-                            </div></td>
-                        </tr>
                     </tbody>
                 </table>
         </div>
@@ -647,212 +709,52 @@ color: greenyellow;
             <span class="headerspan">Crypto-Dashboard</span>
             <button class="searchbtn" onclick="openDiv('cryptolist')"> <i class="fa-solid fa-shake fa-magnifying-glass"></i> Search</button>
             <div class="userdiv">
-                <img src="./users/1.jpg" alt="">
-                <div class="useredit"><input type="text" value="Anonymous" id="Anonymous">
+                <img src="./users/7.jpeg" alt="" id="userimg">
+                <div class="useredit"><input type="text" value="Anonymous" id="username">
                     <i class="fa-solid fa-pen-to-square"></i></div>
             </div>
         </div>
         <div class="menu">
-           <div class="crypto-sample">
-          <div class="cryptodiv">
-            <div class="cryptotitle">
-                <div class="cryptoicon">
-                    <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400" alt="Bitcoin Logo">
-                </div>
-                <div class="cryptonames">
-                <span>Bitcoin</span>
-                <span>BTC</span>
-            </div>
-            </div>
-            <div class="cryptomoney">
-                <span>$69,254</span>
-                <span>+0.34</span>
-                <div class="imggraph">
-                    <img class="sparkline-img" src="https://www.coingecko.com/coins/4128/sparkline.svg" alt="Sparkline">
-                </div>
-            </div>
-          </div>
-          <div class="cryptodiv">
-            <div class="cryptotitle">
-                <div class="cryptoicon">
-                    <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400" alt="Bitcoin Logo">
-                </div>
-                <div class="cryptonames">
-                <span>Bitcoin</span>
-                <span>BTC</span>
-            </div>
-            </div>
-            <div class="cryptomoney">
-                <span>$69,254</span>
-                <span>+0.34</span>
-                <div class="imggraph">
-                    <img class="sparkline-img" src="https://www.coingecko.com/coins/4128/sparkline.svg" alt="Sparkline">
-                </div>
-            </div>
-          </div>
-          <div class="cryptodiv">
-            <div class="cryptotitle">
-                <div class="cryptoicon">
-                    <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400" alt="Bitcoin Logo">
-                </div>
-                <div class="cryptonames">
-                <span>Bitcoin</span>
-                <span>BTC</span>
-            </div>
-            </div>
-            <div class="cryptomoney">
-                <span>$69,254</span>
-                <span>+0.34</span>
-                <div class="imggraph">
-                    <img class="sparkline-img" src="https://www.coingecko.com/coins/4128/sparkline.svg" alt="Sparkline">
-                </div>
-            </div>
-          </div>
-          <div class="cryptodiv">
-            <div class="cryptotitle">
-                <div class="cryptoicon">
-                    <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400" alt="Bitcoin Logo">
-                </div>
-                <div class="cryptonames">
-                <span>Bitcoin</span>
-                <span>BTC</span>
-            </div>
-            </div>
-            <div class="cryptomoney">
-                <span>$69,254</span>
-                <span>+0.34</span>
-                <div class="imggraph">
-                    <img class="sparkline-img" src="https://www.coingecko.com/coins/4128/sparkline.svg" alt="Sparkline">
-                </div>
-            </div>
-          </div>
-          <div class="cryptodiv">
-            <div class="cryptotitle">
-                <div class="cryptoicon">
-                    <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400" alt="Bitcoin Logo">
-                </div>
-                <div class="cryptonames">
-                <span>Bitcoin</span>
-                <span>BTC</span>
-            </div>
-            </div>
-            <div class="cryptomoney">
-                <span>$69,254</span>
-                <span>+0.34</span>
-                <div class="imggraph">
-                    <img class="sparkline-img" src="https://www.coingecko.com/coins/4128/sparkline.svg" alt="Sparkline">
-                </div>
-            </div>
-          </div>
-          <div class="cryptodiv">
-            <div class="cryptotitle">
-                <div class="cryptoicon">
-                    <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400" alt="Bitcoin Logo">
-                </div>
-                <div class="cryptonames">
-                <span>Bitcoin</span>
-                <span>BTC</span>
-            </div>
-            </div>
-            <div class="cryptomoney">
-                <span>$69,254</span>
-                <span>+0.34</span>
-                <div class="imggraph">
-                    <img class="sparkline-img" src="https://www.coingecko.com/coins/4128/sparkline.svg" alt="Sparkline">
-                </div>
-            </div>
-          </div>
-          <div class="cryptodiv">
-            <div class="cryptotitle">
-                <div class="cryptoicon">
-                    <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400" alt="Bitcoin Logo">
-                </div>
-                <div class="cryptonames">
-                <span>Bitcoin</span>
-                <span>BTC</span>
-            </div>
-            </div>
-            <div class="cryptomoney">
-                <span>$69,254</span>
-                <span>+0.34</span>
-                <div class="imggraph">
-                    <img class="sparkline-img" src="https://www.coingecko.com/coins/4128/sparkline.svg" alt="Sparkline">
-                </div>
-            </div>
-          </div>
-          <div class="cryptodiv">
-            <div class="cryptotitle">
-                <div class="cryptoicon">
-                    <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400" alt="Bitcoin Logo">
-                </div>
-                <div class="cryptonames">
-                <span>Bitcoin</span>
-                <span>BTC</span>
-            </div>
-            </div>
-            <div class="cryptomoney">
-                <span>$69,254</span>
-                <span>+0.34</span>
-                <div class="imggraph">
-                    <img class="sparkline-img" src="https://www.coingecko.com/coins/4128/sparkline.svg" alt="Sparkline">
-                </div>
-            </div>
-          </div>
-          <div class="cryptodiv">
-            <div class="cryptotitle">
-                <div class="cryptoicon">
-                    <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400" alt="Bitcoin Logo">
-                </div>
-                <div class="cryptonames">
-                <span>Bitcoin</span>
-                <span>BTC</span>
-            </div>
-            </div>
-            <div class="cryptomoney">
-                <span>$69,254</span>
-                <span>+0.34</span>
-                <div class="imggraph">
-                    <img class="sparkline-img" src="https://www.coingecko.com/coins/4128/sparkline.svg" alt="Sparkline">
-                </div>
-            </div>
-          </div>
+           <div class="crypto-sample" id="crypto-sample">
+            <!-- crypto divs from js -->
            </div>
            <div class="crypto-card">
             <div class="cardzone">
                 <div class="visacard">
                    <div class="visatitle">
                     <div class="invisatitle">
-                        <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400" alt="">
-                        <span>Bitcoin</span>
+                        <img src="" alt="" id="coindomimg">
+                        <span  id="coindomname"></span> <i class="coinsymbol" id="domcoinsymbol"></i>
+
                     </div>
-                    <i class="fa-solid fa-wifi"></i>
+                    <i class="wifi fa-solid fa-wifi"></i>
                    </div>
                    <div class="visanumber">
-                    <span><i>BTC</i> Card-Number</span>
+                    <span><i id="domcoinsymbol"></i> Card-Number</span>
                    <span class="invisanumber">
                     2684 7512 9654 4185  
                    </span>
                    </div>
                    <div class="visabalance">
-                    <span><i>BTC</i> Price</span>
-                   <span class="invisabalance">$63, 268.00</span>
+                    <span><i id="domcoinsymbol"></i> Price</span>
+                   <span class="invisabalance" id="coindomprice"></span>
                    </div>
                 </div>
             </div>
             <div class="cardsummary">
-                <div class="titles"><i>Bitcoin</i> In Summary.</div>
+                <div class="titles"><i id="coindomname"></i> In Summary.</div>
 
                 <div class="summarycoin">
                     <div class="coindata">
 
                         <div class="incoindata">
                             <span>Market-Rank</span>
-                            <i>1</i>
+                            <i id="coindomrank"></i>
                         </div>
 
                         <div class="incoindata">
                             <span>Current-Price</span>
-                            <i>$63, 268.00</i>
+                            <i id="coindomprice" i></i>
                         </div>
 
                     </div>
@@ -861,12 +763,12 @@ color: greenyellow;
                         
                         <div class="incoindata">
                             <span>24h Price Change</span>
-                            <i>$ 896.08</i>
+                            <i id="coindompricechange">$ 896.0</i>
                         </div>
 
                         <div class="incoindata">
                             <span>24h Price Change in %</span>
-                            <i>1.29782</i>
+                            <i id="coindompricepercent">1.29782</i>
                         </div>
 
                     </div> 
@@ -887,15 +789,54 @@ color: greenyellow;
                 </div>
             </div>
             <div class="carddate">
-                <span>Last Updated: <i>24th April 2024</i></span>
+                <span>Last Updated: <i id="coindomdate"></i></span>
             </div>
            </div>
            <div class="transaction">
-            transaction
+           <div class="titles">Recent <i id="coindomname"></i> Transactions</div>
+           <div class="alltransactions">
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>User</th>
+                        <th>Coin</th>
+                        <th>Invested</th>
+                        <th>24h Rate</th>
+                        <th>Received</th>
+                        <th>Date</th>
+                        <th>7 Days Graph</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td>1</td>
+
+                        <td><div class="tabledivimg">
+                            <img src="./users/11.jpg" alt=""> @Anonymous 
+                        </div></td>
+
+                         <td><div class="tabledivimg">
+                        <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400" alt=""> 
+                        Bitcoin <i>btc</i>
+                    </div></td>
+                    <td>$177.35</td>
+                        <td class="greenyellow"><i class="greenyellow fa-solid fa-caret-up"></i> 1.23%</td>
+
+                        <td>$377.35</td>
+                        <td> <span class="">24 April 11:24 AM</span></td>
+                        <td><div class="tablegraph">
+                            <img class="" src="https://www.coingecko.com/coins/4128/sparkline.svg" alt="Sparkline">
+                        </div></td>
+                    </tr>
+                </tbody>
+            </table>
+           </div>
            </div>
         </div>
         <div class="chats">
-         <span class="titles">Recent <i>Bitcoin</i> Comments.</span>
+         <span class="titles">Recent <i id="coindomname"></i> Comments.</span>
          <div class="chats-div">
             <div class="inchat">
             <div class="userchat">
@@ -958,13 +899,23 @@ color: greenyellow;
             </div>
          </div>
          <div class="send-div">
-            <img src="./users/1.jpg" alt="">
+            <img src="./users/7.jpeg" alt="" id="userimg">
             <input type="text" placeholder="Type Something...">
             <i class="fa-solid fa-paper-plane"></i>
          </div>
         </div>
         <div class="purchase">
-            <span class="titles"> Operation Buy <i>Bitcoin</i></span>
+            <span class="titles"> Invest For <i id="coindomname"></i></span>
+            <div class="currencies">
+                <div class="incurrencies"><span id="coinrates"> <i id="rates"><i class="greenyellow fa-solid fa-caret-up"></i> 1.23%</i> </span>
+                <input type="text" name="receiving" id="receiving" placeholder="0.00" value=""/>
+                </div>
+                <div class="incurrencies">
+                    <span>USDT: </span>
+                    <input type="text" name="receiving" id="receiving" placeholder="Investing Amount..." value=""/>
+                </div>
+            </div>
+            <button>Buy Now <i class="fa-solid fa-arrow-trend-up"></i></button>
         </div>
     </div>
     <script src="./src/index.js"></script>
