@@ -192,11 +192,12 @@ function cryptoSample(coins)
 
       cryptoSampleHtml.appendChild(cryptoDiv)
       cryptoDiv.addEventListener( 'click',  function () {
-        show(coinName)
+        selectedCoin(coins)
       });
       tableBody.appendChild(cryptotr)
       cryptotr.addEventListener( 'click',  function () {
-        show(coinRank)
+        selectedCoin(coins)
+        closeDiv("cryptolist")
       });
 
 }
@@ -218,10 +219,16 @@ function selectedCoin(coins)
         let coinPriceChange = coins.price_change_24h;
         let coinRate = coins.price_change_percentage_24h;
         let coinLastUpdate = formatDateString(coins.last_updated);
+        let coinath = "$"+coins.ath.toFixed(2);
+        let coinatl = "$"+coins.atl.toFixed(2);
+        let coinAthDate = formatDateString(coins.ath_date);
+        let coinAtlDate = formatDateString(coins.atl_date);
         let coinImage = coins.image;
         let rateColor;
         let rateIcon;
         let coindomimg = document.getElementById('coindomimg');
+        let sendcontent = document.getElementById('sendcontent');
+
         coinPriceChange = "$"+Number(coinPriceChange.toString().replace("-","")).toFixed(2);
 
         if(coinRate > 0){
@@ -232,7 +239,6 @@ function selectedCoin(coins)
           rateIcon = "fa-caret-down"
           coinPriceChange = "-"+coinPriceChange
         }
-        // coinRate = coinRate.toString().replace("-","")
         coinRate = Number(coinRate.toString().replace("-","")).toFixed(2);
 
 
@@ -242,10 +248,15 @@ function selectedCoin(coins)
          updateDomElements("coindomrank",coinRank);
          updateDomElements("coindompricechange",coinPriceChange);
          updateDomElements("coindomdate",coinLastUpdate);
+         updateDomElements("coindomhighest",` ${coinath} <small class="danger">(${coinAthDate})</small>`);
+         updateDomElements("coindomlowest",` ${coinatl} <small class="danger">(${coinAtlDate})</small>`);
          updateDomElements("coindompricepercent",`<i class="${rateColor} fa-solid ${rateIcon}"></i>  ${coinRate}%`);
          updateDomElements("coinrates",`${coinName} <i class="${rateColor} fa-solid ${rateIcon}"></i>  ${coinRate}%`);
-        coindomimg.src = coinImage;     
-        
+        coindomimg.src = coinImage;   
+
+        sendcontent.click(function () {
+          show("Am Clicked " + coinSymbol)
+        });
 
 }
 
