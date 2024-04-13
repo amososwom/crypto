@@ -361,6 +361,7 @@ function coinComments(coinId, coinName = "Coin"){
 }
 
 function postComment(coinId, coinName){
+  currentDate = new Date().toISOString();
   const usernameValue = document.getElementById("username").value;
   const userimgSrc = document.getElementById("userimg").getAttribute("src");
   let coinCommentValue = document.getElementById("coincomment").value;

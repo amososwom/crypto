@@ -87,7 +87,56 @@
       "comment": "thy",
       "profileImage": "./users/7.jpeg",
       "commentDate": "2024-04-13T15:47:05.104Z"
+    },
+    {
+      "id": "staked-ether",
+      "username": "Zany",
+      "comment": "Not a bad Rate for today",
+      "profileImage": "./users/15.jpeg",
+      "commentDate": "2024-04-13T15:49:05.392Z"
+    },
+    {
+      "id": "staked-ether",
+      "username": "Molly",
+      "comment": "Am in for the Trade Actually",
+      "profileImage": "./users/11.jpg",
+      "commentDate": "2024-04-13T15:49:05.392Z"
+    },
+    {
+      "id": "staked-ether",
+      "username": "Jijuts",
+      "comment": "Hope you Guys are selling 😂😂💯📈",
+      "profileImage": "./users/2.png",
+      "commentDate": "2024-04-13T15:49:05.392Z"
+    },
+    {
+      "id": "staked-ether",
+      "username": "Cocktail",
+      "comment": "Obviously Why not at rate of -4.66%",
+      "profileImage": "./users/8.jpeg",
+      "commentDate": "2024-04-13T15:49:05.392Z"
+    },
+    {
+      "id": "staked-ether",
+      "username": "Cocktail",
+      "comment": "jeez",
+      "profileImage": "./users/8.jpeg",
+      "commentDate": "2024-04-13T15:49:05.392Z"
     }
   ],
-  "transactions": []
+  "transactions": [
+    {
+      "id": 1,
+      "username": "Boogie",
+      "profileImage": "./users/7.jpeg",
+      "coinImg": "",
+      "coinName": "Bitcoin",
+      "coinSymbol": "btc",
+      "invested": "658",
+      "24hRate": "2.4",
+      "profit": "568",
+      "date": "2024-04-13T15:47:05.104Z",
+      "7DayGraph": ""
+    }
+  ]
 }
