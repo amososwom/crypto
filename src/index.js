@@ -2,6 +2,7 @@ let username = document.getElementById("username");
 let userimg = document.getElementById("userimg");
 let coinComment = document.getElementById("coincomment")
 let cryptoSampleHtml = document.getElementById("crypto-sample");
+let sendContent = document.getElementById('sendcontent');
 let tableBody = document.getElementById("tableBody");
 const baseUrl = "http://localhost:3000/";
 const cryptoApi = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd";
@@ -228,7 +229,6 @@ function selectedCoin(coins)
         let rateColor;
         let rateIcon;
         let coindomimg = document.getElementById('coindomimg');
-        let sendContent = document.getElementById('sendcontent');
         let investCoin = document.getElementById('investcoin');
 
         coinPriceChange = "$"+Number(coinPriceChange.toString().replace("-","")).toFixed(2);
@@ -258,7 +258,8 @@ function selectedCoin(coins)
         coinComments(coinId, coinName);
 
 
-        sendContent.onclick  = () => {
+        sendContent.onsubmit  = (e) => {
+          e.preventDefault();
           postComment(coinId,coinName)
         };
         investCoin.onclick  = () => {
@@ -267,7 +268,7 @@ function selectedCoin(coins)
 
 }
 
-// fetchCryptoData()
+fetchCryptoData()
 
 function coinComments(coinId, coinName = "Coin"){
   let chatsDiv = document.getElementById("chats-div");
@@ -297,27 +298,24 @@ function coinComments(coinId, coinName = "Coin"){
 }
 
 function postComment(coinId, coinName){
-   username = username.value;
-   userimg = userimg.getAttribute("src");
-   coinComment = coinComment.value
+  const usernameValue = document.getElementById("username").value;
+  const userimgSrc = document.getElementById("userimg").getAttribute("src");
+  let coinCommentValue = document.getElementById("coincomment").value;
+
     let comment = {
       "id": coinId,
-      "username": username,
-      "comment": coinComment,
-      "profileImage": userimg,
+      "username": usernameValue,
+      "comment": coinCommentValue,
+      "profileImage": userimgSrc,
       "commentDate": currentDate
     }
-show(userimg)
     async function fetchCryptoData() {
-      const data = await requestData(`${baseUrl}comments/`, "POST", comment);
-    if(data.length > 0){
-      show(data);
-    }else{
-      alert("Changes Sent");
+        const data = await requestData(`${baseUrl}comments/`, "POST", comment);
+          alert("Comment Updated Successfully, Many Regards " + usernameValue);
+        
     }
-}
-fetchCryptoData();
-    coinComments(coinId, coinName);
-}
 
-console.log(coinComment.value);
+    fetchCryptoData();
+    coinComments(coinId, coinName);
+    sendContent.reset();
+}
