@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON Data Filtering</title>
+</head>
+<body>
+
+<input type="text" id="searchInput" placeholder="Search by Name">
+
+<table id="dataTable" border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Table rows will be dynamically generated -->
+  </tbody>
+</table>
+
+<script>
+const jsonData = [
+  { "id": 1, "name": "John", "email": "john@example.com" },
+  { "id": 2, "name": "Alice", "email": "alice@example.com" },
+  { "id": 3, "name": "Bob", "email": "bob@example.com" },
+  { "id": 4, "name": "Charlie", "email": "charlie@boogie.com" },
+  { "id": 5, "name": "David", "email": "david@example.com" }
+];
+
+function renderTable(data) {
+  const tableBody = document.querySelector('#dataTable tbody');
+  tableBody.innerHTML = '';
+  data.forEach(item => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${item.id}</td>
+      <td>${item.name}</td>
+      <td>${item.email}</td>
+    `;
+    tableBody.appendChild(row);
+  });
+}
+
+// function filterData(query) {
+//   const filteredData = jsonData.filter(item => {
+//     return item.email.toLowerCase().includes(query.toLowerCase());
+//   });
+//   renderTable(filteredData);
+// }
+
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('input', function() {
+  const query = this.value.trim();
+  filterData(query);
+});
+
+// Initial rendering of table with all data
+renderTable(jsonData);
+</script>
+
+</body>
+</html>

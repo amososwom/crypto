@@ -74,6 +74,20 @@
     }
   ],
   "comments": [
+    {
+      "id": "shiba-inu",
+      "username": "Anonymous",
+      "comment": "Ill invest On Shiba Inu",
+      "profileImage": "./users/7.jpeg",
+      "commentDate": "2024-04-13T12:45:13.132Z"
+    },
+    {
+      "id": "ethereum",
+      "username": "Anonymous",
+      "comment": "thy",
+      "profileImage": "./users/7.jpeg",
+      "commentDate": "2024-04-13T15:47:05.104Z"
+    }
   ],
   "transactions": []
 }

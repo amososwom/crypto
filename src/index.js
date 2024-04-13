@@ -52,8 +52,18 @@ async function fetchCryptoData() {
         const data = await requestData(cryptoApi, "GET", null);
       if(data.length > 0){
         selectedCoin(data[getRandomNumber(1,20)])
-        for(values of data){
-          cryptoSample(values);
+          cryptoSample(data);
+          listedCoins(data)
+          
+          document.getElementById("cryptoserach").addEventListener( 'input',  function() {
+            filterData(this.value);
+          });
+
+          function filterData(query) {
+            const filteredData = data.filter(item => {
+              return item.name.toLowerCase().includes(query.toLowerCase());
+            });
+              listedCoins(filteredData)
           }
       }else{
         show("We couldnt Receive our Info At the Moment Due to resricted numb of API Request Please try again in 1 min")
@@ -94,13 +104,29 @@ function updateDomElements(element = null, valueContent = null){
 
 }
 
-
-
 function getRandomNumber(min, max) {
-return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  
+  function coinCardNumber(){
+    let defaultNumber = 4
+    let i = 0;
+    let result = "";
+  
+    while( i < defaultNumber){
+      let inresult = "";
+      let n = 0;
+      while( n < defaultNumber){
+        inresult += getRandomNumber(0, 9);
+        n++
+        
+      }
+      result += inresult+ " ";
+      i++
+    }
+    updateDomElements("invisanumber",result)
+    return result;
+  }
 
 function formatDate(originalDateString) {
         // creates new object for thedate
@@ -133,8 +159,10 @@ function formatDate(originalDateString) {
         return number.toString().padStart(2, '0');
       }
 
-function cryptoSample(coins)
-{
+function listedCoins(data)
+{ 
+  tableBody.innerHTML = "";
+  for(coins of data){
         let coinRank  = coins.market_cap_rank;
         let coinName = coins.name;
         let coinSymbol = coins.symbol.toUpperCase();
@@ -155,28 +183,7 @@ function cryptoSample(coins)
           rateIcon = "fa-caret-down"
           coinPriceChange = "-"+coinPriceChange
         }
-        // coinRate = coinRate.toString().replace("-","")
         coinRate = Number(coinRate.toString().replace("-","")).toFixed(2);
-
-        let cryptoDiv = document.createElement('div');
-        cryptoDiv.className = "cryptodiv";
-         cryptoDiv.innerHTML = `
-        <div class="cryptotitle">
-            <div class="cryptoicon">
-                <img src="${coinImage}" alt="${coinName} Logo">
-            </div>
-            <div class="cryptonames">
-            <span>${coinName}</span>
-            <span>${coinSymbol}</span>
-        </div>
-        </div>
-        <div class="cryptomoney">
-            <span>${coinPrice}</span>
-            <span class="${rateColor}"><i class="${rateColor} fa-solid ${rateIcon}"></i> ${coinRate}%</span>
-            <div class="imggraph">
-                <img class="sparkline-img" src="${coinSvg}" alt="${coinName}">
-            </div>
-        </div>`;
 
       let cryptotr = document.createElement('tr');
       cryptotr.innerHTML = `
@@ -191,18 +198,74 @@ function cryptoSample(coins)
           <img class="" src="${coinSvg}" alt="${coinName}">
       </div></td>`;
 
-      cryptoSampleHtml.appendChild(cryptoDiv)
-      cryptoDiv.addEventListener( 'click',  function () {
-        selectedCoin(coins)
-      });
       tableBody.appendChild(cryptotr)
-      cryptotr.addEventListener( 'click',  function () {
-        selectedCoin(coins)
-        closeDiv("cryptolist")
-      });
+      function runOutterSelectedCoin(eachCoin){
+        return function() { 
+          selectedCoin(eachCoin)
+          closeDiv("cryptolist")
+        }
+      }
+  
+      cryptotr.addEventListener('click', runOutterSelectedCoin(coins))
 
+    }
 }
 
+function cryptoSample(data){
+
+  for(coins of data){
+  let coinName = coins.name;
+  let coinSymbol = coins.symbol.toUpperCase();
+  let coinPrice = '$'+coins.current_price.toFixed(2);
+  let coinPriceChange = coins.price_change_24h;
+  let coinRate = coins.price_change_percentage_24h;
+  let coinImage = coins.image;
+  let coinSvg = extractSvgNumber(coinImage)
+  let rateColor;
+  let rateIcon;
+  coinPriceChange = "$"+Number(coinPriceChange.toString().replace("-","")).toFixed(2);
+
+  if(coinRate > 0){
+    rateColor = "greenyellow"
+    rateIcon = "fa-caret-up"
+  } else {
+    rateColor = "danger"
+    rateIcon = "fa-caret-down"
+    coinPriceChange = "-"+coinPriceChange
+  }
+  coinRate = Number(coinRate.toString().replace("-","")).toFixed(2);
+
+  let cryptoDiv = document.createElement('div');
+  cryptoDiv.className = "cryptodiv";
+   cryptoDiv.innerHTML = `
+  <div class="cryptotitle">
+      <div class="cryptoicon">
+          <img src="${coinImage}" alt="${coinName} Logo">
+      </div>
+      <div class="cryptonames">
+      <span>${coinName}</span>
+      <span>${coinSymbol}</span>
+  </div>
+  </div>
+  <div class="cryptomoney">
+      <span>${coinPrice}</span>
+      <span class="${rateColor}"><i class="${rateColor} fa-solid ${rateIcon}"></i> ${coinRate}%</span>
+      <div class="imggraph">
+          <img class="sparkline-img" src="${coinSvg}" alt="${coinName}">
+      </div>
+  </div>`;
+
+  function runOutterSelectedCoin(eachCoin){
+      return function() { 
+        selectedCoin(eachCoin)
+      }
+    }
+
+    cryptoDiv.addEventListener('click', runOutterSelectedCoin(coins))
+
+  cryptoSampleHtml.appendChild(cryptoDiv)
+  }
+}
         
 function extractSvgNumber(url){
         const urlParts = url.split("/");
@@ -256,6 +319,7 @@ function selectedCoin(coins)
          updateDomElements("coinrates",`${coinName} <i class="${rateColor} fa-solid ${rateIcon}"></i>  ${coinRate}`);
         coindomimg.src = coinImage;   
         coinComments(coinId, coinName);
+        coinCardNumber();
 
 
         sendContent.onsubmit  = (e) => {
@@ -265,7 +329,6 @@ function selectedCoin(coins)
         investCoin.onclick  = () => {
           show("Investing " + coinRate)
         };
-
 }
 
 fetchCryptoData()
@@ -319,3 +382,4 @@ function postComment(coinId, coinName){
     coinComments(coinId, coinName);
     sendContent.reset();
 }
+
