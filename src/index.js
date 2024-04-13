@@ -227,7 +227,8 @@ function selectedCoin(coins)
         let rateColor;
         let rateIcon;
         let coindomimg = document.getElementById('coindomimg');
-        let sendcontent = document.getElementById('sendcontent');
+        let sendContent = document.getElementById('sendcontent');
+        let investCoin = document.getElementById('investcoin');
 
         coinPriceChange = "$"+Number(coinPriceChange.toString().replace("-","")).toFixed(2);
 
@@ -239,7 +240,7 @@ function selectedCoin(coins)
           rateIcon = "fa-caret-down"
           coinPriceChange = "-"+coinPriceChange
         }
-        coinRate = Number(coinRate.toString().replace("-","")).toFixed(2);
+        coinRate = Number(coinRate.toString().replace("-","")).toFixed(2)+"%";
 
 
         updateDomElements("domcoinsymbol",coinSymbol);
@@ -248,15 +249,18 @@ function selectedCoin(coins)
          updateDomElements("coindomrank",coinRank);
          updateDomElements("coindompricechange",coinPriceChange);
          updateDomElements("coindomdate",coinLastUpdate);
-         updateDomElements("coindomhighest",` ${coinath} <small class="danger">(${coinAthDate})</small>`);
+         updateDomElements("coindomhighest",` ${coinath} <small>(${coinAthDate})</small>`);
          updateDomElements("coindomlowest",` ${coinatl} <small class="danger">(${coinAtlDate})</small>`);
-         updateDomElements("coindompricepercent",`<i class="${rateColor} fa-solid ${rateIcon}"></i>  ${coinRate}%`);
-         updateDomElements("coinrates",`${coinName} <i class="${rateColor} fa-solid ${rateIcon}"></i>  ${coinRate}%`);
+         updateDomElements("coindompricepercent",`<i class="${rateColor} fa-solid ${rateIcon}"></i>  ${coinRate}`);
+         updateDomElements("coinrates",`${coinName} <i class="${rateColor} fa-solid ${rateIcon}"></i>  ${coinRate}`);
         coindomimg.src = coinImage;   
 
-        sendcontent.click(function () {
-          show("Am Clicked " + coinSymbol)
-        });
+        sendContent.onclick  = () => {
+          show("Am Clicked " + coinRate)
+        };
+        investCoin.onclick  = () => {
+          show("Investing " + coinRate)
+        };
 
 }
 
