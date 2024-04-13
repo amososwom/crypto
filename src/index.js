@@ -73,11 +73,13 @@ username.addEventListener("input", function() {
 
          let alluserimgs = document.querySelectorAll("#userimg")
 
-        fetch(`${baseUrl}users/${randomInteger}`)
+        fetch(`${baseUrl}users/?id=${randomInteger}`)
             .then((response)=> response.json())
             .then(data => { 
+              let imgFile = data[0].fileName;
+              show(imgFile)
                 alluserimgs.forEach( function(img) {
-                        img.src=`./users/${data.fileName}`
+                        img.src=`./users/${imgFile}`
                 });
             })
 })
@@ -129,9 +131,6 @@ function formatDate(originalDateString) {
       function padZero(number) {
         return number.toString().padStart(2, '0');
       }
-
-// const originalDateString = "2024-04-11T20:00:20.592Z";
-// console.log(formatDate(originalDateString)); 
 
 function cryptoSample(coins)
 {
@@ -256,9 +255,11 @@ function selectedCoin(coins)
          updateDomElements("coindompricepercent",`<i class="${rateColor} fa-solid ${rateIcon}"></i>  ${coinRate}`);
          updateDomElements("coinrates",`${coinName} <i class="${rateColor} fa-solid ${rateIcon}"></i>  ${coinRate}`);
         coindomimg.src = coinImage;   
+        coinComments(coinId, coinName);
+
 
         sendContent.onclick  = () => {
-          coinComments(coinId)
+          show(coinId)
         };
         investCoin.onclick  = () => {
           show("Investing " + coinRate)
@@ -266,16 +267,16 @@ function selectedCoin(coins)
 
 }
 
-// fetchCryptoData()
+fetchCryptoData()
 
-function coinComments(coinId){
-
+function coinComments(coinId, coinName = "Coin"){
+  let chatsDiv = document.getElementById("chats-div");
+  let coindomPlaceHolder = document.getElementById("coindomcommentvalue")
+  chatsDiv.innerHTML = "";
     async function fetchCoinComments() {
-
       const data = await requestData(`${baseUrl}comments/?id=${coinId}`, "GET", null);
     if(data.length > 0){
       for(values of data){
-        show(values);
         let commentDiv = document.createElement('div');
         commentDiv.className = 'inchat';
        commentDiv.innerHTML = `
@@ -285,35 +286,13 @@ function coinComments(coinId){
         </div>
         <div class="msgchat">${values.comment}</div>
         <span class="chattime">${formatDate(values.commentDate)}</span>`;
-        document.getElementById("chats-div").appendChild(commentDiv);
+        chatsDiv.appendChild(commentDiv);
+        coindomPlaceHolder.placeholder = `Type a comment on ${coinName}...`;
         }
     }else{
-      document.getElementById("coindomcommentvalue").placeholder = `Be the First to comment on ${coinId}...`;
+      coindomPlaceHolder.placeholder = `Be the First to comment on ${coinName}...`;
     }
   }
 
   fetchCoinComments()
-
 }
-// let commentId = "etherium";
-// fetch(`${baseUrl}comments/${commentId}`,{
-//   method: "PATCH",
-//   headers: {
-//     "Content-Type": "application/json"
-//   },
-//   body: JSON.stringify({
-//     "username": "boogie"
-//   })
-// })
-//   .then(response => {
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
-//     return response.json();
-//   })
-//   .then(data => {
-//     console.log("Received data:", data);
-//   })
-//   .catch(error => {
-//     console.error("Error fetching data:", error);
-//   });
