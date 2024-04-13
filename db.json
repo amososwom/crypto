@@ -1,25 +1,93 @@
 {
-    "users": [
-      { "id": 1, "fileName": "1.jpg" },
-      { "id": 2, "fileName": "2.png" },
-      { "id": 3, "fileName": "3.jpeg" },
-      { "id": 4, "fileName": "4.jpeg" },
-      { "id": 5, "fileName": "5.jpeg" },
-      { "id": 6, "fileName": "6.jpeg" },
-      { "id": 7, "fileName": "7.jpeg" },
-      { "id": 8, "fileName": "8.jpeg" },
-      { "id": 9, "fileName": "9.jpeg" },
-      { "id": 10, "fileName": "10.jpeg" },
-      { "id": 11, "fileName": "11.jpg" },
-      { "id": 12, "fileName": "12.jpeg" },
-      { "id": 13, "fileName": "13.jpeg" },
-      { "id": 14, "fileName": "14.jpeg" },
-      { "id": 15, "fileName": "15.jpeg" },
-      { "id": 16, "fileName": "16.jpeg" },
-      { "id": 17, "fileName": "17.jpg" },
-      { "id": 18, "fileName": "18.jpg" }
-    ],
-    "comments": [],
-    "transactions": []
-  }
-  
+  "users": [
+    {
+      "id": 1,
+      "fileName": "1.jpg"
+    },
+    {
+      "id": 2,
+      "fileName": "2.png"
+    },
+    {
+      "id": 3,
+      "fileName": "3.jpeg"
+    },
+    {
+      "id": 4,
+      "fileName": "4.jpeg"
+    },
+    {
+      "id": 5,
+      "fileName": "5.jpeg"
+    },
+    {
+      "id": 6,
+      "fileName": "6.jpeg"
+    },
+    {
+      "id": 7,
+      "fileName": "7.jpeg"
+    },
+    {
+      "id": 8,
+      "fileName": "8.jpeg"
+    },
+    {
+      "id": 9,
+      "fileName": "9.jpeg"
+    },
+    {
+      "id": 10,
+      "fileName": "10.jpeg"
+    },
+    {
+      "id": 11,
+      "fileName": "11.jpg"
+    },
+    {
+      "id": 12,
+      "fileName": "12.jpeg"
+    },
+    {
+      "id": 13,
+      "fileName": "13.jpeg"
+    },
+    {
+      "id": 14,
+      "fileName": "14.jpeg"
+    },
+    {
+      "id": 15,
+      "fileName": "15.jpeg"
+    },
+    {
+      "id": 16,
+      "fileName": "16.jpeg"
+    },
+    {
+      "id": 17,
+      "fileName": "17.jpg"
+    },
+    {
+      "id": 18,
+      "fileName": "18.jpg"
+    }
+  ],
+  "comments": [
+    {
+      "id": "etherium",
+      "username": "noeo",
+      "comment": "Db testing",
+      "profileImage": "./users/8.jpeg",
+      "commentDate": "2024-04-12T18:59:15.853Z"
+    },
+    {
+      "id": "etherium",
+      "username": "boogie",
+      "comment": "Db testing",
+      "profileImage": "./users/12.jpeg",
+      "commentDate": "2024-04-22T18:59:15.853Z"
+    }
+  ],
+  "transactions": []
+}

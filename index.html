@@ -593,6 +593,9 @@ background-color: #ebe1e131;
     background-color: transparent;
     outline: none;
 }
+.send-div input::placeholder{
+    font-size: 11px;
+}
 .send-div input:active,
 .send-div input:hover{
     border: 2px solid greenyellow;
@@ -804,7 +807,7 @@ color: greenyellow !important;
                         <th>Coin</th>
                         <th>Invested</th>
                         <th>24h Rate</th>
-                        <th>Received</th>
+                        <th>Profit</th>
                         <th>Date</th>
                         <th>7 Days Graph</th>
                     </tr>
@@ -837,70 +840,12 @@ color: greenyellow !important;
         </div>
         <div class="chats">
          <span class="titles">Recent <i id="coindomname"></i> Comments.</span>
-         <div class="chats-div">
-            <div class="inchat">
-            <div class="userchat">
-                <img src="./users/1.jpg" alt="">
-                <span>@Anonymous</span>
-            </div>
-            <div class="msgchat">
-                Hello the crypto is okay<br>
-            </div>
-            <span class="chattime">24 April 11:24 AM</span>
-            </div>
-            <div class="inchat">
-            <div class="userchat">
-                <img src="./users/1.jpg" alt="">
-                <span>@Anonymous</span>
-            </div>
-            <div class="msgchat"> Hello the crypto is okay
-            </div>
-            <span class="chattime">24 April 11:24 AM</span>
-            </div>
-            <div class="inchat">
-            <div class="userchat">
-                <img src="./users/1.jpg" alt="">
-                <span>@Anonymous</span>
-            </div>
-            <div class="msgchat"> Hello the crypto is okay
-            </div>
-            <span class="chattime">24 April 11:24 AM</span>
-            </div>
-            <div class="inchat">
-            <div class="userchat">
-                <img src="./users/1.jpg" alt="">
-                <span>@Anonymous</span>
-            </div>
-            <div class="msgchat"> Hello the crypto is okay
-            </div>
-            <span class="chattime">24 April 11:24 AM</span>
-            </div>
-            <div class="inchat">
-            <div class="userchat">
-                <img src="./users/1.jpg" alt="">
-                <span>@Anonymous</span>
-            </div>
-            <div class="msgchat"> Hello the crypto is okay
-                Hello the crypto is okay<br> Hello the crypto is okay
-                Hello the crypto is okay<br>
-            </div>
-            <span class="chattime">24 April 11:24 AM</span>
-            </div>
-            <div class="inchat">
-            <div class="userchat">
-                <img src="./users/1.jpg" alt="">
-                <span>@Anonymous</span>
-            </div>
-            <div class="msgchat"> Hello the crypto is okay
-                Hello the crypto is okay<br> Hello the crypto is okay
-                Hello the crypto is okay<br>
-            </div>
-            <span class="chattime">24 April 11:24 AM</span>
-            </div>
+         <div class="chats-div" id="chats-div">
+            <!-- cahts here -->
          </div>
          <div class="send-div">
             <img src="./users/7.jpeg" alt="" id="userimg">
-            <input type="text" placeholder="Type Something...">
+            <input type="text" placeholder="Type a comment..." id="coindomcommentvalue">
             <i class="fa-solid fa-paper-plane" id="sendcontent"></i>
          </div>
         </div>

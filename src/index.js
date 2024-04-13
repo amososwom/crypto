@@ -6,6 +6,7 @@ const baseUrl = "http://localhost:3000/";
 const cryptoApi = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd";
 const cryptoImg = "https://www.coingecko.com/coins/"
 const svg = "/sparkline.svg"
+const currentDate = new Date().toISOString();
 
 
 function show(values){
@@ -55,7 +56,7 @@ async function fetchCryptoData() {
       }else{
         show("We couldnt Receive our Info At the Moment Due to resricted numb of API Request Please try again in 1 min")
       }
-    }
+}
 
 function closeDiv(id){
         blurScreen(false)
@@ -98,7 +99,7 @@ return Math.floor(Math.random() * (max - min + 1)) + min;
 
 
 
-function formatDateString(originalDateString) {
+function formatDate(originalDateString) {
         // creates new object for thedate
         const originalDate = new Date(originalDateString);
         let year = originalDate.getFullYear().toString().slice(-2);
@@ -130,7 +131,7 @@ function formatDateString(originalDateString) {
       }
 
 // const originalDateString = "2024-04-11T20:00:20.592Z";
-// console.log(formatDateString(originalDateString)); 
+// console.log(formatDate(originalDateString)); 
 
 function cryptoSample(coins)
 {
@@ -212,17 +213,18 @@ function extractSvgNumber(url){
 
 function selectedCoin(coins)
 {
+        let coinId  = coins.id;
         let coinRank  = coins.market_cap_rank;
         let coinName = coins.name;
         let coinSymbol = coins.symbol.toUpperCase();
         let coinPrice = '$'+coins.current_price.toFixed(2);
         let coinPriceChange = coins.price_change_24h;
         let coinRate = coins.price_change_percentage_24h;
-        let coinLastUpdate = formatDateString(coins.last_updated);
+        let coinLastUpdate = formatDate(coins.last_updated);
         let coinath = "$"+coins.ath.toFixed(2);
         let coinatl = "$"+coins.atl.toFixed(2);
-        let coinAthDate = formatDateString(coins.ath_date);
-        let coinAtlDate = formatDateString(coins.atl_date);
+        let coinAthDate = formatDate(coins.ath_date);
+        let coinAtlDate = formatDate(coins.atl_date);
         let coinImage = coins.image;
         let rateColor;
         let rateIcon;
@@ -256,7 +258,7 @@ function selectedCoin(coins)
         coindomimg.src = coinImage;   
 
         sendContent.onclick  = () => {
-          show("Am Clicked " + coinRate)
+          coinComments(coinId)
         };
         investCoin.onclick  = () => {
           show("Investing " + coinRate)
@@ -264,4 +266,54 @@ function selectedCoin(coins)
 
 }
 
-fetchCryptoData()
+// fetchCryptoData()
+
+function coinComments(coinId){
+
+    async function fetchCoinComments() {
+
+      const data = await requestData(`${baseUrl}comments/?id=${coinId}`, "GET", null);
+    if(data.length > 0){
+      for(values of data){
+        show(values);
+        let commentDiv = document.createElement('div');
+        commentDiv.className = 'inchat';
+       commentDiv.innerHTML = `
+        <div class="userchat">
+            <img src="${values.profileImage}" alt="${values.id}">
+            <span>@${values.username}</span>
+        </div>
+        <div class="msgchat">${values.comment}</div>
+        <span class="chattime">${formatDate(values.commentDate)}</span>`;
+        document.getElementById("chats-div").appendChild(commentDiv);
+        }
+    }else{
+      document.getElementById("coindomcommentvalue").placeholder = `Be the First to comment on ${coinId}...`;
+    }
+  }
+
+  fetchCoinComments()
+
+}
+// let commentId = "etherium";
+// fetch(`${baseUrl}comments/${commentId}`,{
+//   method: "PATCH",
+//   headers: {
+//     "Content-Type": "application/json"
+//   },
+//   body: JSON.stringify({
+//     "username": "boogie"
+//   })
+// })
+//   .then(response => {
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! Status: ${response.status}`);
+//     }
+//     return response.json();
+//   })
+//   .then(data => {
+//     console.log("Received data:", data);
+//   })
+//   .catch(error => {
+//     console.error("Error fetching data:", error);
+//   });
