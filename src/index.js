@@ -384,3 +384,23 @@ function postComment(coinId, coinName){
     sendContent.reset();
 }
 
+function postInvestment(coinId, coinName){
+  currentDate = new Date().toISOString();
+  const usernameValue = document.getElementById("username").value;
+  const userimgSrc = document.getElementById("userimg").getAttribute("src");
+  let coinCommentValue = document.getElementById("coincomment").value;
+  
+  let comment = {
+    "id": coinId,
+    "username": usernameValue,
+    "profileImage": coinCommentValue,
+    "coinImg": userimgSrc,
+    "coinName": currentDate,
+    "coinSymbol": coinId,
+    "invested": usernameValue,
+    "24hRate": coinCommentValue,
+    "profit": userimgSrc,
+    "date": currentDate,
+    "7DayGraph": currentDate
+  } 
+}

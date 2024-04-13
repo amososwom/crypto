@@ -174,16 +174,19 @@
         </div>
         <div class="purchase">
             <span class="titles"> Invest For <i id="coindomname"></i></span>
+            <form id="investcoin">
             <div class="currencies">
                 <div class="incurrencies"><span id="coinrates"> <i id="rates"><i class="greenyellow fa-solid fa-caret-up"></i> 1.23%</i> </span>
                 <input type="text" name="receiving" id="receiving" placeholder="0.00" readonly/>
                 </div>
                 <div class="incurrencies">
                     <span>USDT: </span>
-                    <input type="text" name="receiving" id="receiving" placeholder="Investing Amount..." value=""/>
+                
+                    <input type="text" name="receiving" id="receiving" placeholder="Investing Amount..." required/>
                 </div>
             </div>
-            <button id="investcoin">Buy Now <i class="fa-solid fa-arrow-trend-up"></i></button>
+            <button >Buy Now <i class="fa-solid fa-arrow-trend-up"></i></button>
+        </form>
         </div>
     </div>
     <script src="./src/index.js"></script>

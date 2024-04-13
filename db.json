@@ -122,6 +122,13 @@
       "comment": "jeez",
       "profileImage": "./users/8.jpeg",
       "commentDate": "2024-04-13T15:49:05.392Z"
+    },
+    {
+      "id": "staked-ether",
+      "username": "Anonymous",
+      "comment": "noce ",
+      "profileImage": "./users/7.jpeg",
+      "commentDate": "2024-04-13T18:06:35.887Z"
     }
   ],
   "transactions": [
