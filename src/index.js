@@ -3,6 +3,7 @@ let userimg = document.getElementById("userimg");
 let coinComment = document.getElementById("coincomment")
 let cryptoSampleHtml = document.getElementById("crypto-sample");
 let sendContent = document.getElementById('sendcontent');
+let investCoin = document.getElementById('investcoin');
 let tableBody = document.getElementById("tableBody");
 const baseUrl = "http://localhost:3000/";
 const cryptoApi = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd";
@@ -49,6 +50,7 @@ async function requestData(url, method = "GET", myBody = null) {
 }
 
 async function fetchCryptoData() {
+  try{
         const data = await requestData(cryptoApi, "GET", null);
       if(data.length > 0){
         selectedCoin(data[getRandomNumber(1,20)])
@@ -68,6 +70,9 @@ async function fetchCryptoData() {
       }else{
         show("We couldnt Receive our Info At the Moment Due to resricted numb of API Request Please try again in 1 min")
       }
+    } catch (e) {
+      show("We couldnt Receive our Info At the Moment.")
+    }
 }
 
 function closeDiv(id){
@@ -373,34 +378,49 @@ function postComment(coinId, coinName){
       "profileImage": userimgSrc,
       "commentDate": currentDate
     }
-    async function fetchCryptoData() {
+    async function postChatComent() {
         const data = await requestData(`${baseUrl}comments/`, "POST", comment);
           alert("Comment Updated Successfully, Many Regards " + usernameValue);
         
     }
 
-    fetchCryptoData();
+    postChatComent();
     coinComments(coinId, coinName);
     sendContent.reset();
 }
 
-function postInvestment(coinId, coinName){
+function invested(){
+  
+}
+function coinTransactions(coinId){
+
+}
+function postInvestment(coinId, coinName, coinImage, coinSymbol, coinRate, coinGraph){
   currentDate = new Date().toISOString();
   const usernameValue = document.getElementById("username").value;
   const userimgSrc = document.getElementById("userimg").getAttribute("src");
   let coinCommentValue = document.getElementById("coincomment").value;
   
   let comment = {
-    "id": coinId,
+    "coinId": coinId,
     "username": usernameValue,
-    "profileImage": coinCommentValue,
-    "coinImg": userimgSrc,
-    "coinName": currentDate,
-    "coinSymbol": coinId,
-    "invested": usernameValue,
-    "24hRate": coinCommentValue,
-    "profit": userimgSrc,
+    "profileImage": userimgSrc,
+    "coinImg": coinImage,
+    "coinName": coinName,
+    "coinSymbol": coinSymbol,
+    "invested": usernameValue, //invested
+    "24hRate": coinRate,
+    "profit": userimgSrc, //profit
     "date": currentDate,
-    "7DayGraph": currentDate
+    "7DayGraph": coinGraph
   } 
+  async function postTransactions() {
+    const data = await requestData(`${baseUrl}transactions/`, "POST", comment);
+      alert("Comment Updated Successfully, Many Regards " + usernameValue);
+    
+}
+
+postTransactions();
+// coinTransactions(coinId);
+investCoin.reset();
 }
