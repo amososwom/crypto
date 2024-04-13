@@ -87,6 +87,20 @@
       "comment": "Db testing",
       "profileImage": "./users/12.jpeg",
       "commentDate": "2024-04-22T18:59:15.853Z"
+    },
+    {
+      "id": "matic-network",
+      "username": "Anonymous",
+      "comment": "I just Invested on Polygon",
+      "profileImage": "./users/7.jpeg",
+      "commentDate": "2024-04-13T12:05:27.516Z"
+    },
+    {
+      "id": "matic-network",
+      "username": "Anonymous",
+      "comment": "",
+      "profileImage": "./users/7.jpeg",
+      "commentDate": "2024-04-13T12:07:44.328Z"
     }
   ],
   "transactions": []

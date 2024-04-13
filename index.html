@@ -608,6 +608,14 @@ background-color: #ebe1e131;
     height: 50px;
     border-radius: 50%;
 }
+.sendbtn{
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
 .purchase{
     /* background-color: rgba(89, 9, 155, 0.404); */
     grid-area: 3/2/4/3;
@@ -843,10 +851,11 @@ color: greenyellow !important;
          <div class="chats-div" id="chats-div">
             <!-- cahts here -->
          </div>
-         <div class="send-div">
+         <form class="send-div">
             <img src="./users/7.jpeg" alt="" id="userimg">
-            <input type="text" placeholder="Type a comment..." id="coindomcommentvalue">
-            <i class="fa-solid fa-paper-plane" id="sendcontent"></i>
+            <input type="text" placeholder="Type a comment..." required id="coincomment">
+            <button class="sendbtn"><i class="fa-solid fa-paper-plane" id="sendcontent"></i></button>
+            
          </div>
         </div>
         <div class="purchase">

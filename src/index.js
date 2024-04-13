@@ -1,5 +1,6 @@
-const username = document.getElementById("username");
+let username = document.getElementById("username");
 let userimg = document.getElementById("userimg");
+let coinComment = document.getElementById("coincomment")
 let cryptoSampleHtml = document.getElementById("crypto-sample");
 let tableBody = document.getElementById("tableBody");
 const baseUrl = "http://localhost:3000/";
@@ -77,7 +78,6 @@ username.addEventListener("input", function() {
             .then((response)=> response.json())
             .then(data => { 
               let imgFile = data[0].fileName;
-              show(imgFile)
                 alluserimgs.forEach( function(img) {
                         img.src=`./users/${imgFile}`
                 });
@@ -259,7 +259,7 @@ function selectedCoin(coins)
 
 
         sendContent.onclick  = () => {
-          show(coinId)
+          postComment(coinId,coinName)
         };
         investCoin.onclick  = () => {
           show("Investing " + coinRate)
@@ -267,11 +267,10 @@ function selectedCoin(coins)
 
 }
 
-fetchCryptoData()
+// fetchCryptoData()
 
 function coinComments(coinId, coinName = "Coin"){
   let chatsDiv = document.getElementById("chats-div");
-  let coindomPlaceHolder = document.getElementById("coindomcommentvalue")
   chatsDiv.innerHTML = "";
     async function fetchCoinComments() {
       const data = await requestData(`${baseUrl}comments/?id=${coinId}`, "GET", null);
@@ -287,12 +286,38 @@ function coinComments(coinId, coinName = "Coin"){
         <div class="msgchat">${values.comment}</div>
         <span class="chattime">${formatDate(values.commentDate)}</span>`;
         chatsDiv.appendChild(commentDiv);
-        coindomPlaceHolder.placeholder = `Type a comment on ${coinName}...`;
+        coinComment.placeholder = `Type a comment on ${coinName}...`;
         }
     }else{
-      coindomPlaceHolder.placeholder = `Be the First to comment on ${coinName}...`;
+      coinComment.placeholder = `Be the First to comment on ${coinName}...`;
     }
   }
 
   fetchCoinComments()
 }
+
+function postComment(coinId, coinName){
+   username = username.value;
+   userimg = userimg.getAttribute("src");
+   coinComment = coinComment.value
+    let comment = {
+      "id": coinId,
+      "username": username,
+      "comment": coinComment,
+      "profileImage": userimg,
+      "commentDate": currentDate
+    }
+show(userimg)
+    async function fetchCryptoData() {
+      const data = await requestData(`${baseUrl}comments/`, "POST", comment);
+    if(data.length > 0){
+      show(data);
+    }else{
+      alert("Changes Sent");
+    }
+}
+fetchCryptoData();
+    coinComments(coinId, coinName);
+}
+
+console.log(coinComment.value);
