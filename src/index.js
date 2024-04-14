@@ -13,8 +13,9 @@ const cryptoImg = "https://www.coingecko.com/coins/"
 const svg = "/sparkline.svg"
 let currentDate = new Date().toISOString();
 
-fetchCryptoData()
+// fetchCryptoData()
 
+// setTimeout(fetchCryptoData(), 3000);
 function show(values){
         console.log(values);
 }
@@ -22,10 +23,18 @@ function show(values){
 function blurScreen(res = false){
       let myScreen = document.querySelector(".blurdiv");
         if(res){
-                myScreen.style.display = "block";
+                myScreen.style.display = "grid";
         }else{
                 myScreen.style.display = "none";
         }
+}
+function loadingSvg(res = false){
+  let myScreen = document.querySelector(".loadingjson");
+    if(res){
+            myScreen.style.display = "grid";
+    }else{
+            myScreen.style.display = "none";
+    }
 }
 
 async function requestData(url, method = "GET", myBody = null) {
@@ -46,17 +55,21 @@ async function requestData(url, method = "GET", myBody = null) {
                 body: JSON.stringify(myBody)
             }
         }
-    
+    try{
         const response = await fetch(url, request);
         const data = await response.json(); // Parse JSON response
         return data;
+    } catch (e) {
+      alert("We couldnt Receive our Info At the Moment due to restricted number of request in 1 Minute please try again after 1 minute." + e)
+    }
 }
 
 async function fetchCryptoData() {
   try{
         const data = await requestData(cryptoApi, "GET", null);
       if(data.length > 0){
-        selectedCoin(data[getRandomNumber(1,20)])
+        loadingSvg(false)
+        selectedCoin(data[3])//getRandomNumber(1,20)])
           cryptoSample(data);
           listedCoins(data)
           
@@ -72,10 +85,10 @@ async function fetchCryptoData() {
           }
 
       }else{
-        show("We couldnt Receive our Info At the Moment Due to resricted numb of API Request Please try again in 1 min")
+        alert("We couldnt Receive our Info At the Seems we encounterd An empty list of Records Plaese refresh after a min")
       }
     } catch (e) {
-      show("We couldnt Receive our Info At the Moment. " + e)
+      alert(`Failed to fetch cryptocurrency data: ${error.message}`);
     }
 }
 

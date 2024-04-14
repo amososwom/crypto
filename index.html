@@ -6,9 +6,16 @@
     <title>Crypto App</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://kit.fontawesome.com/27b89f5f87.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
     <div class="blurdiv"></div>
+    <div class="loadingjson">
+        <div class="decentrlizes">
+            <lottie-player src="./images/loading.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+            <span>Fetching Decentrized Crpto Coin...</span>
+        </div>
+    </div>
     <div class="cryptolist" id="cryptolist">
     <i class="closestyle fa-shake fa-solid fa-xmark" onclick="closeDiv('cryptolist')"></i>
         <div class="titles">Available Crypto Coins.</div>
