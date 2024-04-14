@@ -346,7 +346,8 @@ function selectedCoin(coins)
 
         invest.addEventListener('input', function() {
          let amount = this.value
-         let intrest = (amount * calcRate + amount);
+         let intrest = amount * calcRate;
+         intrest = (amount + amount)
           document.getElementById("receiving").value = Number(intrest).toFixed(2);
         })
 }
@@ -404,6 +405,60 @@ function postComment(coinId, coinName){
 
 function coinTransactions(coinId){
   transTable.innerHTML = "";
+  async function fetchCoinTransaction() {
+    try{
+    const data = await requestData(`${baseUrl}transactions/?coinId=${coinId}`, "GET", null);
+  if(data.length > 0){
+    for(values of data){
+      let transTime = formatDate(values.date);
+      let coinRate = values.dailyRate
+      let invested = "$"+values.invested.toFixed(2);
+      let profit = "$"+values.profit.toFixed(2);
+      let coinSymbol = values.coinSymbol.toUpperCase()
+      
+      if(coinRate > 0){
+        rateColor = "greenyellow"
+        rateIcon = "fa-caret-up"
+      } else {
+        rateColor = "danger"
+        rateIcon = "fa-caret-down"
+      }
+
+      let commentTr = document.createElement('tr');
+     commentTr.innerHTML = `
+     <td>1</td>
+
+     <td><div class="tabledivimg">
+         <img src="${values.profileImage} " alt="${values.username} "> @${values.username} 
+     </div></td>
+
+      <td><div class="tabledivimg">
+     <img src="${values.coinImg}" alt="${coinSymbol}"> 
+     ${values.coinName} <i>${coinSymbol}</i>
+ </div></td>
+ <td>${invested}</td>
+     <td class="${rateColor}"><i class="${rateColor} fa-solid ${rateIcon}"></i> ${Math.abs(coinRate)}%</td>
+
+     <td>${profit}</td>
+     <td> <span class="greenyellow">${transTime}</span></td>
+     <td><div class="tablegraph">
+         <img class="" src="${values.weekGraph}" alt="${coinSymbol}">
+     </div></td>
+      `;
+
+      transTable.appendChild(commentTr);
+      }
+  }else{
+    transTable.innerHTML = `<tr><td  colspan="8">Be the first To make a Transaction</td></tr>`;
+  }
+} catch (e) {
+  transTable.innerHTML = `<tr><td  colspan="8">Sorry We couldnt Grab any Records at The Moment Kind Regards</td></tr>`;
+  show(e)
+}
+}
+
+fetchCoinTransaction()
+
 
 }
 function postInvestment(coinId, coinName, coinImage, coinSymbol, coinRate, coinGraph){
@@ -420,11 +475,11 @@ function postInvestment(coinId, coinName, coinImage, coinSymbol, coinRate, coinG
     "coinImg": coinImage,
     "coinName": coinName,
     "coinSymbol": coinSymbol,
-    "invested": investing, 
-    "24hRate": coinRate,
-    "profit": receiving, 
+    "invested": Number(investing), 
+    "dailyRate": coinRate,
+    "profit": Number(receiving), 
     "date": currentDate,
-    "7DayGraph": coinGraph
+    "weekGraph": coinGraph
   } 
   async function postTransactions() {
     const data = await requestData(`${baseUrl}transactions/`, "POST", comment);

@@ -140,19 +140,6 @@
   ],
   "transactions": [
     {
-      "coinId": "bitcoin",
-      "username": "Boogie",
-      "profileImage": "./users/7.jpeg",
-      "coinImg": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400",
-      "coinName": "Bitcoin",
-      "coinSymbol": "btc",
-      "invested": "658",
-      "24hRate": "2.4",
-      "profit": "568",
-      "date": "2024-04-13T15:47:05.104Z",
-      "7DayGraph": "https://www.coingecko.com/coins/1/sparkline.svg"
-    },
-    {
       "id": "99b7",
       "coinId": "staked-ether",
       "username": "Anonymous",
@@ -160,11 +147,11 @@
       "coinImg": "https://assets.coingecko.com/coins/images/13442/large/steth_logo.png?1696513206",
       "coinName": "Lido Staked Ether",
       "coinSymbol": "STETH",
-      "invested": "50",
-      "24hRate": -7.19632,
-      "profit": "359.82",
+      "invested": 50,
+      "dailyRate": -7.19632,
+      "profit": 359.82,
       "date": "2024-04-14T04:25:59.060Z",
-      "7DayGraph": "https://www.coingecko.com/coins/13442/sparkline.svg"
+      "weekGraph": "https://www.coingecko.com/coins/13442/sparkline.svg"
     },
     {
       "id": "01b2",
@@ -174,11 +161,39 @@
       "coinImg": "https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png?1696501970",
       "coinName": "BNB",
       "coinSymbol": "BNB",
-      "invested": "89",
-      "24hRate": -5.69403,
-      "profit": "506.77",
+      "invested": 89,
+      "dailyRate": -5.69403,
+      "profit": 506.77,
       "date": "2024-04-14T04:26:37.708Z",
-      "7DayGraph": "https://www.coingecko.com/coins/825/sparkline.svg"
+      "weekGraph": "https://www.coingecko.com/coins/825/sparkline.svg"
+    },
+    {
+      "id": "30ad",
+      "coinId": "bitcoin",
+      "username": "Anonymous",
+      "profileImage": "./users/7.jpeg",
+      "coinImg": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400",
+      "coinName": "Bitcoin",
+      "coinSymbol": "BTC",
+      "invested": 500,
+      "dailyRate": -5.28124,
+      "profit": 2640.62,
+      "date": "2024-04-14T05:12:23.534Z",
+      "weekGraph": "https://www.coingecko.com/coins/1/sparkline.svg"
+    },
+    {
+      "id": "29c5",
+      "coinId": "tether",
+      "username": "Anonymous",
+      "profileImage": "./users/7.jpeg",
+      "coinImg": "https://assets.coingecko.com/coins/images/325/large/Tether.png?1696501661",
+      "coinName": "Tether",
+      "coinSymbol": "USDT",
+      "invested": 63,
+      "dailyRate": 0.1121,
+      "profit": 7.06,
+      "date": "2024-04-14T05:12:31.381Z",
+      "weekGraph": "https://www.coingecko.com/coins/325/sparkline.svg"
     }
   ]
 }
