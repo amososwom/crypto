@@ -345,9 +345,8 @@ function selectedCoin(coins)
         };
 
         invest.addEventListener('input', function() {
-         let amount = this.value
-         let intrest = amount * calcRate;
-         intrest = (amount + amount)
+         let amount = Number(this.value)
+         let intrest = amount * Number(calcRate) + amount;
           document.getElementById("receiving").value = Number(intrest).toFixed(2);
         })
 }
@@ -405,6 +404,7 @@ function postComment(coinId, coinName){
 
 function coinTransactions(coinId){
   transTable.innerHTML = "";
+  let i = 1;
   async function fetchCoinTransaction() {
     try{
     const data = await requestData(`${baseUrl}transactions/?coinId=${coinId}`, "GET", null);
@@ -426,20 +426,17 @@ function coinTransactions(coinId){
 
       let commentTr = document.createElement('tr');
      commentTr.innerHTML = `
-     <td>1</td>
-
+     <td>${i++}</td>
      <td><div class="tabledivimg">
          <img src="${values.profileImage} " alt="${values.username} "> @${values.username} 
      </div></td>
-
       <td><div class="tabledivimg">
      <img src="${values.coinImg}" alt="${coinSymbol}"> 
      ${values.coinName} <i>${coinSymbol}</i>
  </div></td>
  <td>${invested}</td>
      <td class="${rateColor}"><i class="${rateColor} fa-solid ${rateIcon}"></i> ${Math.abs(coinRate)}%</td>
-
-     <td>${profit}</td>
+     <td class="greenyellow" >${profit}</td>
      <td> <span class="greenyellow">${transTime}</span></td>
      <td><div class="tablegraph">
          <img class="" src="${values.weekGraph}" alt="${coinSymbol}">

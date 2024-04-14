@@ -194,6 +194,20 @@
       "profit": 7.06,
       "date": "2024-04-14T05:12:31.381Z",
       "weekGraph": "https://www.coingecko.com/coins/325/sparkline.svg"
+    },
+    {
+      "id": "eefa",
+      "coinId": "binancecoin",
+      "username": "Anonymous",
+      "profileImage": "./users/7.jpeg",
+      "coinImg": "https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png?1696501970",
+      "coinName": "BNB",
+      "coinSymbol": "BNB",
+      "invested": 50,
+      "dailyRate": -5.43154,
+      "profit": 321.58,
+      "date": "2024-04-14T05:23:45.884Z",
+      "weekGraph": "https://www.coingecko.com/coins/825/sparkline.svg"
     }
   ]
 }
