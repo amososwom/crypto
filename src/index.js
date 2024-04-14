@@ -4,13 +4,16 @@ let coinComment = document.getElementById("coincomment")
 let cryptoSampleHtml = document.getElementById("crypto-sample");
 let sendContent = document.getElementById('sendcontent');
 let investCoin = document.getElementById('investcoin');
+let invest = document.getElementById("investing")
 let tableBody = document.getElementById("tableBody");
+let transTable = document.getElementById("transTable");
 const baseUrl = "http://localhost:3000/";
 const cryptoApi = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd";
 const cryptoImg = "https://www.coingecko.com/coins/"
 const svg = "/sparkline.svg"
-const currentDate = new Date().toISOString();
+let currentDate = new Date().toISOString();
 
+fetchCryptoData()
 
 function show(values){
         console.log(values);
@@ -67,11 +70,12 @@ async function fetchCryptoData() {
             });
               listedCoins(filteredData)
           }
+
       }else{
         show("We couldnt Receive our Info At the Moment Due to resricted numb of API Request Please try again in 1 min")
       }
     } catch (e) {
-      show("We couldnt Receive our Info At the Moment.")
+      show("We couldnt Receive our Info At the Moment. " + e)
     }
 }
 
@@ -294,6 +298,7 @@ function selectedCoin(coins)
         let coinAthDate = formatDate(coins.ath_date);
         let coinAtlDate = formatDate(coins.atl_date);
         let coinImage = coins.image;
+        let coinSvg = extractSvgNumber(coinImage)
         let rateColor;
         let rateIcon;
         let coindomimg = document.getElementById('coindomimg');
@@ -309,6 +314,8 @@ function selectedCoin(coins)
           rateIcon = "fa-caret-down"
           coinPriceChange = "-"+coinPriceChange
         }
+        let calcRate = Math.abs(coinRate);
+        let realRate = coinRate;
         coinRate = Number(coinRate.toString().replace("-","")).toFixed(2)+"%";
 
 
@@ -323,21 +330,26 @@ function selectedCoin(coins)
          updateDomElements("coindompricepercent",`<i class="${rateColor} fa-solid ${rateIcon}"></i>  ${coinRate}`);
          updateDomElements("coinrates",`${coinName} <i class="${rateColor} fa-solid ${rateIcon}"></i>  ${coinRate}`);
         coindomimg.src = coinImage;   
-        coinComments(coinId, coinName);
         coinCardNumber();
+        coinComments(coinId, coinName);
+        coinTransactions(coinId)
 
 
         sendContent.onsubmit  = (e) => {
           e.preventDefault();
           postComment(coinId,coinName)
         };
-        investCoin.onclick  = () => {
-          show("Investing " + coinRate)
+        investCoin.onsubmit  = (e) => {
+          e.preventDefault();
+          postInvestment(coinId, coinName, coinImage, coinSymbol, realRate, coinSvg)
         };
+
+        invest.addEventListener('input', function() {
+         let amount = this.value
+         let intrest = (amount * calcRate + amount);
+          document.getElementById("receiving").value = Number(intrest).toFixed(2);
+        })
 }
-
-fetchCryptoData()
-
 function coinComments(coinId, coinName = "Coin"){
   let chatsDiv = document.getElementById("chats-div");
   chatsDiv.innerHTML = "";
@@ -367,8 +379,8 @@ function coinComments(coinId, coinName = "Coin"){
 
 function postComment(coinId, coinName){
   currentDate = new Date().toISOString();
-  const usernameValue = document.getElementById("username").value;
-  const userimgSrc = document.getElementById("userimg").getAttribute("src");
+  let usernameValue = document.getElementById("username").value;
+  let userimgSrc = document.getElementById("userimg").getAttribute("src");
   let coinCommentValue = document.getElementById("coincomment").value;
 
     let comment = {
@@ -389,17 +401,17 @@ function postComment(coinId, coinName){
     sendContent.reset();
 }
 
-function invested(){
-  
-}
+
 function coinTransactions(coinId){
+  transTable.innerHTML = "";
 
 }
 function postInvestment(coinId, coinName, coinImage, coinSymbol, coinRate, coinGraph){
   currentDate = new Date().toISOString();
   const usernameValue = document.getElementById("username").value;
   const userimgSrc = document.getElementById("userimg").getAttribute("src");
-  let coinCommentValue = document.getElementById("coincomment").value;
+  let receiving = document.getElementById("receiving").value;
+  let investing = document.getElementById("investing").value;
   
   let comment = {
     "coinId": coinId,
@@ -408,19 +420,19 @@ function postInvestment(coinId, coinName, coinImage, coinSymbol, coinRate, coinG
     "coinImg": coinImage,
     "coinName": coinName,
     "coinSymbol": coinSymbol,
-    "invested": usernameValue, //invested
+    "invested": investing, 
     "24hRate": coinRate,
-    "profit": userimgSrc, //profit
+    "profit": receiving, 
     "date": currentDate,
     "7DayGraph": coinGraph
   } 
   async function postTransactions() {
     const data = await requestData(`${baseUrl}transactions/`, "POST", comment);
-      alert("Comment Updated Successfully, Many Regards " + usernameValue);
+      alert("Transaction Updated Successfully, Many Regards " + usernameValue);
     
 }
 
 postTransactions();
-// coinTransactions(coinId);
+coinTransactions(coinId);
 investCoin.reset();
 }

@@ -122,6 +122,20 @@
       "comment": "noce ",
       "profileImage": "./users/7.jpeg",
       "commentDate": "2024-04-13T18:06:35.887Z"
+    },
+    {
+      "id": "solana",
+      "username": "Anonymous",
+      "comment": "Solana has a good Rate at the moment",
+      "profileImage": "./users/7.jpeg",
+      "commentDate": "2024-04-13T21:10:29.513Z"
+    },
+    {
+      "id": "solana",
+      "username": "Musk",
+      "comment": "Yeap +16.24% very nice @Anonymous",
+      "profileImage": "./users/6.jpeg",
+      "commentDate": "2024-04-13T21:11:19.305Z"
     }
   ],
   "transactions": [
@@ -137,6 +151,34 @@
       "profit": "568",
       "date": "2024-04-13T15:47:05.104Z",
       "7DayGraph": "https://www.coingecko.com/coins/1/sparkline.svg"
+    },
+    {
+      "id": "99b7",
+      "coinId": "staked-ether",
+      "username": "Anonymous",
+      "profileImage": "./users/7.jpeg",
+      "coinImg": "https://assets.coingecko.com/coins/images/13442/large/steth_logo.png?1696513206",
+      "coinName": "Lido Staked Ether",
+      "coinSymbol": "STETH",
+      "invested": "50",
+      "24hRate": -7.19632,
+      "profit": "359.82",
+      "date": "2024-04-14T04:25:59.060Z",
+      "7DayGraph": "https://www.coingecko.com/coins/13442/sparkline.svg"
+    },
+    {
+      "id": "01b2",
+      "coinId": "binancecoin",
+      "username": "Boogie",
+      "profileImage": "./users/16.jpeg",
+      "coinImg": "https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png?1696501970",
+      "coinName": "BNB",
+      "coinSymbol": "BNB",
+      "invested": "89",
+      "24hRate": -5.69403,
+      "profit": "506.77",
+      "date": "2024-04-14T04:26:37.708Z",
+      "7DayGraph": "https://www.coingecko.com/coins/825/sparkline.svg"
     }
   ]
 }
