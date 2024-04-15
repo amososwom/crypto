@@ -1,75 +1,75 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "fileName": "1.jpg"
     },
     {
-      "id": 2,
+      "id": "2",
       "fileName": "2.png"
     },
     {
-      "id": 3,
+      "id": "3",
       "fileName": "3.jpeg"
     },
     {
-      "id": 4,
+      "id": "4",
       "fileName": "4.jpeg"
     },
     {
-      "id": 5,
+      "id": "5",
       "fileName": "5.jpeg"
     },
     {
-      "id": 6,
+      "id": "6",
       "fileName": "6.jpeg"
     },
     {
-      "id": 7,
+      "id": "7",
       "fileName": "7.jpeg"
     },
     {
-      "id": 8,
+      "id": "8",
       "fileName": "8.jpeg"
     },
     {
-      "id": 9,
+      "id": "9",
       "fileName": "9.jpeg"
     },
     {
-      "id": 10,
+      "id": "10",
       "fileName": "10.jpeg"
     },
     {
-      "id": 11,
+      "id": "11",
       "fileName": "11.jpg"
     },
     {
-      "id": 12,
+      "id": "12",
       "fileName": "12.jpeg"
     },
     {
-      "id": 13,
+      "id": "13",
       "fileName": "13.jpeg"
     },
     {
-      "id": 14,
+      "id": "14",
       "fileName": "14.jpeg"
     },
     {
-      "id": 15,
+      "id": "15",
       "fileName": "15.jpeg"
     },
     {
-      "id": 16,
+      "id": "16",
       "fileName": "16.jpeg"
     },
     {
-      "id": 17,
+      "id": "17",
       "fileName": "17.jpg"
     },
     {
-      "id": 18,
+      "id": "18",
       "fileName": "18.jpg"
     }
   ],
@@ -136,6 +136,55 @@
       "comment": "Yeap +16.24% very nice @Anonymous",
       "profileImage": "./users/6.jpeg",
       "commentDate": "2024-04-13T21:11:19.305Z"
+    },
+    {
+      "id": "staked-ether",
+      "username": "boogie",
+      "comment": "cool",
+      "profileImage": "./users/7.jpeg",
+      "commentDate": "2024-04-14T06:22:14.082Z"
+    },
+    {
+      "id": "staked-ether",
+      "username": "Anonymous",
+      "comment": "DONE",
+      "profileImage": "./users/7.jpeg",
+      "commentDate": "2024-04-15T14:09:31.835Z"
+    },
+    {
+      "id": "binancecoin",
+      "username": "AnonymouD",
+      "comment": "Am investing on this Asset",
+      "profileImage": "./users/5.jpeg",
+      "commentDate": "2024-04-15T14:10:04.970Z"
+    },
+    {
+      "id": "binancecoin",
+      "username": "Anonymous",
+      "comment": "Nice",
+      "profileImage": "./users/7.jpeg",
+      "commentDate": "2024-04-15T14:11:42.638Z"
+    },
+    {
+      "id": "binancecoin",
+      "username": "Lizz",
+      "comment": "Hi guys ",
+      "profileImage": "./users/17.jpg",
+      "commentDate": "2024-04-15T14:15:47.717Z"
+    },
+    {
+      "id": "internet-computer",
+      "username": "Anonymous",
+      "comment": "s",
+      "profileImage": "./users/7.jpeg",
+      "commentDate": "2024-04-15T14:16:23.744Z"
+    },
+    {
+      "id": "ethereum",
+      "username": "Vlog",
+      "comment": "Nice Investment Rates On This",
+      "profileImage": "./users/11.jpg",
+      "commentDate": "2024-04-15T15:24:36.309Z"
     }
   ],
   "transactions": [
@@ -208,6 +257,48 @@
       "profit": 321.58,
       "date": "2024-04-14T05:23:45.884Z",
       "weekGraph": "https://www.coingecko.com/coins/825/sparkline.svg"
+    },
+    {
+      "id": "b45f",
+      "coinId": "binancecoin",
+      "username": "Anonymous",
+      "profileImage": "./users/7.jpeg",
+      "coinImg": "https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png?1696501970",
+      "coinName": "BNB",
+      "coinSymbol": "BNB",
+      "invested": 55,
+      "dailyRate": -4.11939,
+      "profit": 281.57,
+      "date": "2024-04-14T06:58:56.690Z",
+      "weekGraph": "https://www.coingecko.com/coins/825/sparkline.svg"
+    },
+    {
+      "id": "334e",
+      "coinId": "binancecoin",
+      "username": "Anonymous",
+      "profileImage": "./users/13.jpeg",
+      "coinImg": "https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png?1696501970",
+      "coinName": "BNB",
+      "coinSymbol": "BNB",
+      "invested": 655,
+      "dailyRate": -4.11939,
+      "profit": 3353.2,
+      "date": "2024-04-14T06:59:41.586Z",
+      "weekGraph": "https://www.coingecko.com/coins/825/sparkline.svg"
+    },
+    {
+      "id": "f2c4",
+      "coinId": "ethereum",
+      "username": "Anonymous",
+      "profileImage": "./users/7.jpeg",
+      "coinImg": "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1696501628",
+      "coinName": "Ethereum",
+      "coinSymbol": "ETH",
+      "invested": 70,
+      "dailyRate": 3.26052,
+      "profit": 298.24,
+      "date": "2024-04-15T15:02:41.953Z",
+      "weekGraph": "https://www.coingecko.com/coins/279/sparkline.svg"
     }
   ]
 }

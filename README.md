@@ -5,11 +5,15 @@
 #### By *Amos Omwando Oswo*
 
 ## Description
-This is a webpage for a user to purchse a ticket when they have choose a movie to buy and can be able to delete a movie when they want,
-for every movie they get a chance to read a description of what they will expect i ammovie
+
+On this Dashboard you'll have access to view the crypto coins,Search,Commnet and Invest on the comment parrt you can edit your name on the top right and it will give you a diffrent profile picture as you typeand also when you invest or chat it will display your name.
+
 ## How to Use
-*Hello for you to use/access youll pass some couple of requirments below, then continue with this instruction here:
-youll need to open the `index.html` file on your browser and it will automatically load up the movie
+#### NB 
+ * Please run `json-server --watch db.json`   on your bash termianl first before you Open the Crypto Dashboard.
+
+* After running the above command youll have access to do the above mentioned in the description.
+
 ### Requirements
 
 * A computer with a bash terminal and node installed.

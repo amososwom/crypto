@@ -13,9 +13,8 @@ const cryptoImg = "https://www.coingecko.com/coins/"
 const svg = "/sparkline.svg"
 let currentDate = new Date().toISOString();
 
-// fetchCryptoData()
+fetchCryptoData()
 
-// setTimeout(fetchCryptoData(), 3000);
 function show(values){
         console.log(values);
 }
@@ -60,7 +59,7 @@ async function requestData(url, method = "GET", myBody = null) {
         const data = await response.json(); // Parse JSON response
         return data;
     } catch (e) {
-      alert("We couldnt Receive our Info At the Moment due to restricted number of request in 1 Minute please try again after 1 minute." + e)
+      updateDomElements("statusresponse",`Hopefully this ${baseUrl} is running from your Terminal for it to work, and also My api allows only 5 request in a minute ${e} `)
     }
 }
 
@@ -69,7 +68,7 @@ async function fetchCryptoData() {
         const data = await requestData(cryptoApi, "GET", null);
       if(data.length > 0){
         loadingSvg(false)
-        selectedCoin(data[3])//getRandomNumber(1,20)])
+        selectedCoin(data[getRandomNumber(1,20)])
           cryptoSample(data);
           listedCoins(data)
           
@@ -350,7 +349,8 @@ function selectedCoin(coins)
 
         sendContent.onsubmit  = (e) => {
           e.preventDefault();
-          postComment(coinId,coinName)
+          show("in event");
+         postComment(coinId,coinName)
         };
         investCoin.onsubmit  = (e) => {
           e.preventDefault();
@@ -404,14 +404,14 @@ function postComment(coinId, coinName){
       "commentDate": currentDate
     }
     async function postChatComent() {
-        const data = await requestData(`${baseUrl}comments/`, "POST", comment);
+        let data = await requestData(`${baseUrl}comments/`, "POST", comment);
           alert("Comment Updated Successfully, Many Regards " + usernameValue);
         
     }
-
-    postChatComent();
+   postChatComent();
     coinComments(coinId, coinName);
     sendContent.reset();
+    show("reached post comment")
 }
 
 
