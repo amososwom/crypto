@@ -6,7 +6,7 @@
 
 ## Description
 
-On this Dashboard you'll have access to view the crypto coins,Search,Commnet and Invest on the comment parrt you can edit your name on the top right and it will give you a diffrent profile picture as you typeand also when you invest or chat it will display your name.
+On this Dashboard you'll have access to view the crypto coins,Search,Commnet and Invest on them and also comment part you can edit your name on the top right and it will give you a diffrent profile picture as you type and also when you invest or chat it will display your name.
 
 ## How to Use
 #### NB 
