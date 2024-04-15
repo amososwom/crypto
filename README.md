@@ -1,4 +1,4 @@
-# (CRYTPO DASHBOARD)
+# (CRYPTO DASHBOARD)
 
 #### Date, 2024/04/10
 
